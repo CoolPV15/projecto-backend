@@ -1,0 +1,17 @@
+# Django core
+Django
+
+# Django REST framework for APIs
+djangorestframework
+
+# CORS handling
+django-cors-headers
+
+# PostgreSQL driver
+psycopg2-binary
+
+# JWT authentication
+djangorestframework-simplejwt
+
+# Password hashing
+argon2-cffi
