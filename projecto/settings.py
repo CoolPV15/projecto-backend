@@ -65,7 +65,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://projecto-frontend-tdlu-8o6g9laj4.vercel.app"
+    "https://projecto-frontend-tdlu-msqu2kkmb.vercel.app",
 ]
 
 REST_FRAMEWORK = {
