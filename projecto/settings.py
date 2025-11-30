@@ -16,6 +16,7 @@ from pathlib import Path
 import django
 import dj_database_url
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -104,19 +105,18 @@ WSGI_APPLICATION = 'projecto.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 
-DEFAULT_DB_URL = os.environ.get(
+DEFAULT_DB_URL = os.getenv(
     "DATABASE_URL_LOCAL",
-    "postgres://<your-username>:<your-password>@localhost:5434/projectodb"
+    "postgres://postgres:password@localhost:5434/projectodb"
 )
 
 DATABASES = {
     "default": dj_database_url.config(
         default=DEFAULT_DB_URL,
         conn_max_age=600,
-        ssl_require=os.environ.get('POSTGRES_SSL', 'False') == "True"
+        ssl_require=os.getenv("POSTGRES_SSL", "False") == "True"
     )
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

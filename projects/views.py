@@ -40,6 +40,7 @@ class ProjectLeadView(viewsets.ModelViewSet):
 
     serializer_class = ProjectLeadCreateSerializer
     queryset = ProjectLead.objects.all()
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         """
@@ -99,6 +100,7 @@ class ProjectsDisplayView(viewsets.ModelViewSet):
 
     serializer_class = ProjectDisplaySerializer
     queryset = ProjectLead.objects.all()
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         """
@@ -158,6 +160,7 @@ class ProjectRequestView(viewsets.ModelViewSet):
 
     serializer_class = ProjectRequestCreateSerializer
     queryset = ProjectRequest.objects.all()
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         """
@@ -190,6 +193,7 @@ class ProjectRequestDisplayView(viewsets.ModelViewSet):
 
     serializer_class = ProjectRequestSerializer
     queryset = ProjectRequest.objects.all()
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         """
@@ -227,7 +231,8 @@ class ProjectMembersView(viewsets.ModelViewSet):
 
     serializer_class = ProjectMemberCreateSerializer
     queryset = ProjectMembers.objects.all()
-
+    permission_classes = [IsAuthenticated]
+    
     def create(self, request, *args, **kwargs):
         """
         Add a member to a project after their request is approved.
@@ -260,6 +265,7 @@ class ProjectRejectedView(viewsets.ModelViewSet):
 
     serializer_class = ProjectRejectedCreateSerializer
     queryset = ProjectRequestRejected.objects.all()
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         """
@@ -292,6 +298,7 @@ class JoinedProjectDisplayView(viewsets.ModelViewSet):
 
     serializer_class = JoinedProjectsSerializer
     queryset = ProjectMembers.objects.all()
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         """
@@ -326,6 +333,7 @@ class ProjectMembersDisplayView(viewsets.ModelViewSet):
 
     serializer_class = ProjectMembersDescription
     queryset = ProjectMembers.objects.all()
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         """
@@ -362,6 +370,7 @@ class PendingProjectsView(viewsets.ModelViewSet):
 
     serializer_class = PendingProjectRequests
     queryset = ProjectRequest.objects.all()
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         """
@@ -396,6 +405,8 @@ class ProjectCountView(viewsets.ModelViewSet):
         GET /api/projectcount/?email=<user_email>
     """
 
+    permission_classes = [IsAuthenticated]
+    
     def list(self, request):
         """
         Handle GET request to return project counts for a user.
