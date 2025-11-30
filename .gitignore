@@ -1,0 +1,29 @@
+--- Environment ---
+
+Exclude local environment secrets
+
+.env
+
+--- Python ---
+
+Byte-compiled files
+
+pycache/
+*.pyc
+
+--- Django ---
+
+Default SQLite database file (if used locally)
+
+*.sqlite3
+
+Development logs
+
+*.log
+
+Deployment/Static Files
+
+These are generated during the build process and should not be committed
+
+/staticfiles/
+/media/

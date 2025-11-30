@@ -14,6 +14,8 @@ from datetime import timedelta
 from pathlib import Path
 
 import django
+import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,12 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-lsi!b%hp32gwv@n9!ou8prvl%jvy3e#m+nm=^3gi)d(%!b0f3b'
+# SECRET_KEY = 'django-insecure-lsi!b%hp32gwv@n9!ou8prvl%jvy3e#m+nm=^3gi)d(%!b0f3b'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-lsi!b%hp32gwv@n9!ou8prvl%jvy3e#m+nm=^3gi)d(%!b0f3b')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True')=="True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost', 'projecto-zbz7.onrender.com'] 
 
 
 # Application definition
@@ -99,15 +102,18 @@ WSGI_APPLICATION = 'projecto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
+DEFAULT_DB_URL = os.environ.get(
+    "DATABASE_URL_LOCAL",
+    "postgres://<your-username>:<your-password>@localhost:5434/projectodb"
+)
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'projectodb',
-        'USER' : 'postgres',
-        'PASSWORD' : 'blacksheep15',
-        'HOST': 'localhost',
-        'PORT': '5434'
-    }
+    "default": dj_database_url.config(
+        default=DEFAULT_DB_URL,
+        conn_max_age=600,
+        ssl_require=os.environ.get('POSTGRES_SSL', 'False') == "True"
+    )
 }
 
 
