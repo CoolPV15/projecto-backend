@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-lsi!b%hp32gwv@n9!ou8p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True')=="True"
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost', 'projecto-zbz7.onrender.com'] 
+ALLOWED_HOSTS = ['127.0.0.1','localhost', '.onrender.com'] 
 
 
 # Application definition
@@ -64,6 +64,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://projecto-frontend-tdlu-8o6g9laj4.vercel.app"
 ]
 
 REST_FRAMEWORK = {
@@ -159,7 +160,18 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+# 2. Security setting to prevent the browser from guessing content types
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# 3. Security setting to prevent XSS via headers
+SECURE_BROWSER_XSS_FILTER = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
