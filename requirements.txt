@@ -1,17 +1,15 @@
-# Django core
-Django
-
-# Django REST framework for APIs
-djangorestframework
-
-# CORS handling
-django-cors-headers
-
-# PostgreSQL driver
-psycopg2-binary
-
-# JWT authentication
-djangorestframework-simplejwt
-
-# Password hashing
-argon2-cffi
+argon2-cffi==25.1.0
+argon2-cffi-bindings==25.1.0
+asgiref==3.11.0
+cffi==2.0.0
+Django==5.2.8
+django-cors-headers==4.9.0
+djangorestframework==3.16.1
+djangorestframework_simplejwt==5.5.1
+gunicorn==23.0.0
+packaging==25.0
+psycopg2-binary==2.9.11
+pycparser==2.23
+PyJWT==2.10.1
+sqlparse==0.5.4
+whitenoise==6.11.0
